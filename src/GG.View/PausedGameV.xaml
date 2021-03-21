@@ -1,0 +1,44 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="GG.View.PausedGameV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+    xmlns:ad="clr-namespace:AdRotator;assembly=AdRotator"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding PausedGame, Source={StaticResource Locator}}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="BackKeyPress">
+            <cmd:EventToCommand Command="{Binding ResumeCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Text="Game Paused" HorizontalAlignment="Center" FontSize="48" Margin="0 120 0 0"/>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="Resume" Command="{Binding ResumeCommand}" />
+            <Button Content="Restart" Command="{Binding RestartCommand}"/>
+            <Button Content="Regenerate" Command="{Binding RegenerateCommand}" />
+            <Button Content="Menu" Command="{Binding MenuCommand}"/>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

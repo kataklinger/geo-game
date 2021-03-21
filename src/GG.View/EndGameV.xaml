@@ -1,0 +1,168 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="GG.View.EndGameV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:vc="clr-namespace:GG.View.Converters;assembly=GG.View"
+    xmlns:ad="clr-namespace:AdRotator;assembly=AdRotator"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding EndGame, Source={StaticResource Locator}}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <vc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <vc:ChoiceConverter x:Key="ChoiceConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="You have answered" Margin="0 20 0 0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="correctly to" />
+                <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding CorrectAnswers}" Margin="10 0 10 0" FontSize="32"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Text="questions" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="out of" />
+                <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding TotalQuestions}" Margin="10 0 10 0" FontSize="24"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="with" />
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  HorizontalAlignment="Right" Text="{Binding SuccessRate}" Margin="10 0 0 0" FontSize="32"/>
+                    <TextBlock  HorizontalAlignment="Right" Text="%" Margin="0 0 10 0" FontSize="32"/>
+                </StackPanel>
+                <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Text="success rate" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="in" />
+                <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding TotalTime}" Margin="10 0 10 0" FontSize="24"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Text="seconds" />
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="You have earned" Margin="0 40 0 0"/>
+
+                <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding TotalPoints}" Margin="10 0 10 0" FontSize="32"/>
+                <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Text="points" />
+
+                <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="out of" />
+                <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding MaxPoints}" Margin="10 0 10 0" FontSize="24"/>
+                <TextBlock Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" Text="possible" />
+
+                <TextBlock Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Text="on"/>
+                <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding Difficulty, Converter={StaticResource ChoiceConverter}}" Margin="10 0 10 0"/>
+                <TextBlock Grid.Row="8" Grid.Column="2" Text="difficulty"/>
+
+                <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="116"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Question"  Margin="0 40 0 0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Text="Your answer" Margin="0 40 0 0"/>
+                    <toolkit:Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="White"/>
+                </Grid>
+
+                <ItemsControl Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3"
+                              ItemsSource="{Binding Details}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0"
+                                           Text="{Binding QuestionName}"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Bottom"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Center"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="2"
+                                           Text="{Binding AnswerName}"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Bottom"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Center"/>
+
+                                <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                                       Source="/Assets/CorrectAnswer.png"
+                                       Margin="20 0 20 0"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding IsCorrect, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                       Source="/Assets/IncorrectAnswer.png"
+                                       Margin="20 0 20 0"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding IsIncorrect, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+                                <Image Grid.Row="1" Grid.Column="0"
+                                       Source="{Binding QuestionImage}"
+                                       HorizontalAlignment="Center"
+                                       Stretch="None"/>
+
+                                <Image Grid.Row="1" Grid.Column="2"
+                                       Source="{Binding AnswerImage}"
+                                       HorizontalAlignment="Center"
+                                       Stretch="None"/>
+
+                                <toolkit:Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                                                   BorderThickness="2" BorderBrush="White" Margin="0 5 0 0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

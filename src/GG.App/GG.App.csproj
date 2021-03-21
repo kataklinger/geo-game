@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.props" Condition="Exists('..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6BAD3474-0A94-4401-B1E4-B86C7913D4D2}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GG.App</RootNamespace>
+    <AssemblyName>GG.App</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>GG.App_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>GG.App.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="ImageDataProvider.cs" />
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceDataProvider.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TimerService.cs" />
+    <Compile Include="ViewModel\MainMV.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CorrectAnswer.png" />
+    <Content Include="Assets\CorrectAnswer.wav" />
+    <Content Include="Assets\IncorrectAnswer.png" />
+    <Content Include="Assets\IncorrectAnswer.wav" />
+    <Content Include="Assets\PauseGame.png" />
+    <Content Include="Data\Flags\Large\Ashmore and Cartier Islands.png" />
+    <Content Include="Data\Flags\Large\Heard I. and McDonald Islands.png" />
+    <Content Include="Data\Flags\Large\Siachen Glacier.png" />
+    <Content Include="Data\Flags\Small\Ashmore and Cartier Islands.png" />
+    <Content Include="Data\Flags\Small\Heard I. and McDonald Islands.png" />
+    <Content Include="Data\Flags\Small\Siachen Glacier.png" />
+    <Content Include="Data\VectorData.sqlite" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Flags\Large\Afghanistan.png" />
+    <Content Include="Data\Flags\Large\Aland Islands.png" />
+    <Content Include="Data\Flags\Large\Albania.png" />
+    <Content Include="Data\Flags\Large\Alderney.png" />
+    <Content Include="Data\Flags\Large\Algeria.png" />
+    <Content Include="Data\Flags\Large\American Samoa.png" />
+    <Content Include="Data\Flags\Large\Andorra.png" />
+    <Content Include="Data\Flags\Large\Angola.png" />
+    <Content Include="Data\Flags\Large\Anguilla.png" />
+    <Content Include="Data\Flags\Large\Antarctica.png" />
+    <Content Include="Data\Flags\Large\Antigua and Barbuda.png" />
+    <Content Include="Data\Flags\Large\Argentina.png" />
+    <Content Include="Data\Flags\Large\Armenia.png" />
+    <Content Include="Data\Flags\Large\Aruba.png" />
+    <Content Include="Data\Flags\Large\Ascension Island.png" />
+    <Content Include="Data\Flags\Large\Australia.png" />
+    <Content Include="Data\Flags\Large\Austria.png" />
+    <Content Include="Data\Flags\Large\Azerbaijan.png" />
+    <Content Include="Data\Flags\Large\Bahamas.png" />
+    <Content Include="Data\Flags\Large\Bahrain.png" />
+    <Content Include="Data\Flags\Large\Bangladesh.png" />
+    <Content Include="Data\Flags\Large\Barbados.png" />
+    <Content Include="Data\Flags\Large\Belarus.png" />
+    <Content Include="Data\Flags\Large\Belgium.png" />
+    <Content Include="Data\Flags\Large\Belize.png" />
+    <Content Include="Data\Flags\Large\Benin.png" />
+    <Content Include="Data\Flags\Large\Bermuda.png" />
+    <Content Include="Data\Flags\Large\Bhutan.png" />
+    <Content Include="Data\Flags\Large\Bolivia.png" />
+    <Content Include="Data\Flags\Large\Bonaire.png" />
+    <Content Include="Data\Flags\Large\Bosnia and Herzegovina.png" />
+    <Content Include="Data\Flags\Large\Botswana.png" />
+    <Content Include="Data\Flags\Large\Brazil.png" />
+    <Content Include="Data\Flags\Large\British Antarctic Territory.png" />
+    <Content Include="Data\Flags\Large\British Indian Ocean Territory.png" />
+    <Content Include="Data\Flags\Large\British Virgin Islands.png" />
+    <Content Include="Data\Flags\Large\Brunei Darussalam.png" />
+    <Content Include="Data\Flags\Large\Bulgaria.png" />
+    <Content Include="Data\Flags\Large\Burkina Faso.png" />
+    <Content Include="Data\Flags\Large\Burundi.png" />
+    <Content Include="Data\Flags\Large\Cambodia.png" />
+    <Content Include="Data\Flags\Large\Cameroon.png" />
+    <Content Include="Data\Flags\Large\Canada.png" />
+    <Content Include="Data\Flags\Large\Cape Verde.png" />
+    <Content Include="Data\Flags\Large\Cayman Islands.png" />
+    <Content Include="Data\Flags\Large\Central African Republic.png" />
+    <Content Include="Data\Flags\Large\Chad.png" />
+    <Content Include="Data\Flags\Large\Chile.png" />
+    <Content Include="Data\Flags\Large\China.png" />
+    <Content Include="Data\Flags\Large\Christmas Island.png" />
+    <Content Include="Data\Flags\Large\Cocos %28Keeling%29 Islands.png" />
+    <Content Include="Data\Flags\Large\Colombia.png" />
+    <Content Include="Data\Flags\Large\Comoros.png" />
+    <Content Include="Data\Flags\Large\Cook Islands.png" />
+    <Content Include="Data\Flags\Large\Costa Rica.png" />
+    <Content Include="Data\Flags\Large\Croatia.png" />
+    <Content Include="Data\Flags\Large\Cuba.png" />
+    <Content Include="Data\Flags\Large\Curacao.png" />
+    <Content Include="Data\Flags\Large\Cyprus.png" />
+    <Content Include="Data\Flags\Large\Czech Republic.png" />
+    <Content Include="Data\Flags\Large\Cote d%27Ivoire.png" />
+    <Content Include="Data\Flags\Large\Dem. Rep. Korea.png" />
+    <Content Include="Data\Flags\Large\Democratic Republic of the Congo.png" />
+    <Content Include="Data\Flags\Large\Denmark.png" />
+    <Content Include="Data\Flags\Large\Djibouti.png" />
+    <Content Include="Data\Flags\Large\Dominica.png" />
+    <Content Include="Data\Flags\Large\Dominican Republic.png" />
+    <Content Include="Data\Flags\Large\Ecuador.png" />
+    <Content Include="Data\Flags\Large\Egypt.png" />
+    <Content Include="Data\Flags\Large\El Salvador.png" />
+    <Content Include="Data\Flags\Large\Equatorial Guinea.png" />
+    <Content Include="Data\Flags\Large\Eritrea.png" />
+    <Content Include="Data\Flags\Large\Estonia.png" />
+    <Content Include="Data\Flags\Large\Ethiopia.png" />
+    <Content Include="Data\Flags\Large\Faeroe Islands.png" />
+    <Content Include="Data\Flags\Large\Falkland Islands.png" />
+    <Content Include="Data\Flags\Large\Federated States of Micronesia.png" />
+    <Content Include="Data\Flags\Large\Fiji.png" />
+    <Content Include="Data\Flags\Large\Finland.png" />
+    <Content Include="Data\Flags\Large\France.png" />
+    <Content Include="Data\Flags\Large\French Polynesia.png" />
+    <Content Include="Data\Flags\Large\French Southern and Antarctic Lands.png" />
+    <Content Include="Data\Flags\Large\Gabon.png" />
+    <Content Include="Data\Flags\Large\Georgia.png" />
+    <Content Include="Data\Flags\Large\Germany.png" />
+    <Content Include="Data\Flags\Large\Ghana.png" />
+    <Content Include="Data\Flags\Large\Gibraltar.png" />
+    <Content Include="Data\Flags\Large\Greece.png" />
+    <Content Include="Data\Flags\Large\Greenland.png" />
+    <Content Include="Data\Flags\Large\Grenada.png" />
+    <Content Include="Data\Flags\Large\Guam.png" />
+    <Content Include="Data\Flags\Large\Guatemala.png" />
+    <Content Include="Data\Flags\Large\Guernsey.png" />
+    <Content Include="Data\Flags\Large\Guinea-Bissau.png" />
+    <Content Include="Data\Flags\Large\Guinea.png" />
+    <Content Include="Data\Flags\Large\Guyana.png" />
+    <Content Include="Data\Flags\Large\Haiti.png" />
+    <Content Include="Data\Flags\Large\Herm.png" />
+    <Content Include="Data\Flags\Large\Honduras.png" />
+    <Content Include="Data\Flags\Large\Hong Kong.png" />
+    <Content Include="Data\Flags\Large\Hungary.png" />
+    <Content Include="Data\Flags\Large\Iceland.png" />
+    <Content Include="Data\Flags\Large\India.png" />
+    <Content Include="Data\Flags\Large\Indian Ocean Territories.png" />
+    <Content Include="Data\Flags\Large\Indonesia.png" />
+    <Content Include="Data\Flags\Large\Iran.png" />
+    <Content Include="Data\Flags\Large\Iraq.png" />
+    <Content Include="Data\Flags\Large\Ireland.png" />
+    <Content Include="Data\Flags\Large\Isle of Man.png" />
+    <Content Include="Data\Flags\Large\Israel.png" />
+    <Content Include="Data\Flags\Large\Italy.png" />
+    <Content Include="Data\Flags\Large\Jamaica.png" />
+    <Content Include="Data\Flags\Large\Japan.png" />
+    <Content Include="Data\Flags\Large\Jersey.png" />
+    <Content Include="Data\Flags\Large\Jordan.png" />
+    <Content Include="Data\Flags\Large\Kazakhstan.png" />
+    <Content Include="Data\Flags\Large\Kenya.png" />
+    <Content Include="Data\Flags\Large\Kiribati.png" />
+    <Content Include="Data\Flags\Large\Kosovo.png" />
+    <Content Include="Data\Flags\Large\Kuwait.png" />
+    <Content Include="Data\Flags\Large\Kyrgyzstan.png" />
+    <Content Include="Data\Flags\Large\Lao PDR.png" />
+    <Content Include="Data\Flags\Large\Latvia.png" />
+    <Content Include="Data\Flags\Large\Lebanon.png" />
+    <Content Include="Data\Flags\Large\Lesotho.png" />
+    <Content Include="Data\Flags\Large\Liberia.png" />
+    <Content Include="Data\Flags\Large\Libya.png" />
+    <Content Include="Data\Flags\Large\Liechtenstein.png" />
+    <Content Include="Data\Flags\Large\Lithuania.png" />
+    <Content Include="Data\Flags\Large\Luxembourg.png" />
+    <Content Include="Data\Flags\Large\Macao.png" />
+    <Content Include="Data\Flags\Large\Macedonia.png" />
+    <Content Include="Data\Flags\Large\Madagascar.png" />
+    <Content Include="Data\Flags\Large\Malawi.png" />
+    <Content Include="Data\Flags\Large\Malaysia.png" />
+    <Content Include="Data\Flags\Large\Maldives.png" />
+    <Content Include="Data\Flags\Large\Mali.png" />
+    <Content Include="Data\Flags\Large\Malta.png" />
+    <Content Include="Data\Flags\Large\Marshall Islands.png" />
+    <Content Include="Data\Flags\Large\Mauritania.png" />
+    <Content Include="Data\Flags\Large\Mauritius.png" />
+    <Content Include="Data\Flags\Large\Mexico.png" />
+    <Content Include="Data\Flags\Large\Moldova.png" />
+    <Content Include="Data\Flags\Large\Monaco.png" />
+    <Content Include="Data\Flags\Large\Mongolia.png" />
+    <Content Include="Data\Flags\Large\Montenegro.png" />
+    <Content Include="Data\Flags\Large\Montserrat.png" />
+    <Content Include="Data\Flags\Large\Morocco.png" />
+    <Content Include="Data\Flags\Large\Mozambique.png" />
+    <Content Include="Data\Flags\Large\Myanmar.png" />
+    <Content Include="Data\Flags\Large\Nagorno-Karabakh.png" />
+    <Content Include="Data\Flags\Large\Namibia.png" />
+    <Content Include="Data\Flags\Large\Nauru.png" />
+    <Content Include="Data\Flags\Large\Nepal.png" />
+    <Content Include="Data\Flags\Large\Netherlands.png" />
+    <Content Include="Data\Flags\Large\New Caledonia.png" />
+    <Content Include="Data\Flags\Large\New Zealand.png" />
+    <Content Include="Data\Flags\Large\Nicaragua.png" />
+    <Content Include="Data\Flags\Large\Niger.png" />
+    <Content Include="Data\Flags\Large\Nigeria.png" />
+    <Content Include="Data\Flags\Large\Niue.png" />
+    <Content Include="Data\Flags\Large\Norfolk Island.png" />
+    <Content Include="Data\Flags\Large\Northern Cyprus.png" />
+    <Content Include="Data\Flags\Large\Northern Mariana Islands.png" />
+    <Content Include="Data\Flags\Large\Norway.png" />
+    <Content Include="Data\Flags\Large\Oman.png" />
+    <Content Include="Data\Flags\Large\Pakistan.png" />
+    <Content Include="Data\Flags\Large\Palau.png" />
+    <Content Include="Data\Flags\Large\Palestine.png" />
+    <Content Include="Data\Flags\Large\Panama.png" />
+    <Content Include="Data\Flags\Large\Papua New Guinea.png" />
+    <Content Include="Data\Flags\Large\Paraguay.png" />
+    <Content Include="Data\Flags\Large\Peru.png" />
+    <Content Include="Data\Flags\Large\Philippines.png" />
+    <Content Include="Data\Flags\Large\Pitcairn Islands.png" />
+    <Content Include="Data\Flags\Large\Poland.png" />
+    <Content Include="Data\Flags\Large\Portugal.png" />
+    <Content Include="Data\Flags\Large\Puerto Rico.png" />
+    <Content Include="Data\Flags\Large\Qatar.png" />
+    <Content Include="Data\Flags\Large\Rapa Nui, Chile.png" />
+    <Content Include="Data\Flags\Large\Republic of Congo.png" />
+    <Content Include="Data\Flags\Large\Republic of Korea.png" />
+    <Content Include="Data\Flags\Large\Romania.png" />
+    <Content Include="Data\Flags\Large\Russian Federation.png" />
+    <Content Include="Data\Flags\Large\Rwanda.png" />
+    <Content Include="Data\Flags\Large\Saba.png" />
+    <Content Include="Data\Flags\Large\Saint Helena.png" />
+    <Content Include="Data\Flags\Large\Saint Kitts and Nevis.png" />
+    <Content Include="Data\Flags\Large\Saint Lucia.png" />
+    <Content Include="Data\Flags\Large\Saint Pierre and Miquelon.png" />
+    <Content Include="Data\Flags\Large\Saint Vincent and the Grenadines.png" />
+    <Content Include="Data\Flags\Large\Saint-Barthelemy.png" />
+    <Content Include="Data\Flags\Large\Saint-Martin.png" />
+    <Content Include="Data\Flags\Large\Samoa.png" />
+    <Content Include="Data\Flags\Large\San Marino.png" />
+    <Content Include="Data\Flags\Large\Sao Tome and Principe.png" />
+    <Content Include="Data\Flags\Large\Sark.png" />
+    <Content Include="Data\Flags\Large\Saudi Arabia.png" />
+    <Content Include="Data\Flags\Large\Senegal.png" />
+    <Content Include="Data\Flags\Large\Serbia.png" />
+    <Content Include="Data\Flags\Large\Seychelles.png" />
+    <Content Include="Data\Flags\Large\Sierra Leone.png" />
+    <Content Include="Data\Flags\Large\Singapore.png" />
+    <Content Include="Data\Flags\Large\Sint Eustatius.png" />
+    <Content Include="Data\Flags\Large\Sint Maarten.png" />
+    <Content Include="Data\Flags\Large\Slovakia.png" />
+    <Content Include="Data\Flags\Large\Slovenia.png" />
+    <Content Include="Data\Flags\Large\Solomon Islands.png" />
+    <Content Include="Data\Flags\Large\Somalia.png" />
+    <Content Include="Data\Flags\Large\Somaliland.png" />
+    <Content Include="Data\Flags\Large\South Africa.png" />
+    <Content Include="Data\Flags\Large\South Georgia and South Sandwich Islands.png" />
+    <Content Include="Data\Flags\Large\South Ossetia.png" />
+    <Content Include="Data\Flags\Large\South Sudan.png" />
+    <Content Include="Data\Flags\Large\Spain.png" />
+    <Content Include="Data\Flags\Large\Sri Lanka.png" />
+    <Content Include="Data\Flags\Large\Sudan.png" />
+    <Content Include="Data\Flags\Large\Suriname.png" />
+    <Content Include="Data\Flags\Large\Swaziland.png" />
+    <Content Include="Data\Flags\Large\Sweden.png" />
+    <Content Include="Data\Flags\Large\Switzerland.png" />
+    <Content Include="Data\Flags\Large\Syria.png" />
+    <Content Include="Data\Flags\Large\Taiwan.png" />
+    <Content Include="Data\Flags\Large\Tajikistan.png" />
+    <Content Include="Data\Flags\Large\Tanzania.png" />
+    <Content Include="Data\Flags\Large\Thailand.png" />
+    <Content Include="Data\Flags\Large\The Gambia.png" />
+    <Content Include="Data\Flags\Large\Timor-Leste.png" />
+    <Content Include="Data\Flags\Large\Togo.png" />
+    <Content Include="Data\Flags\Large\Tokelau.png" />
+    <Content Include="Data\Flags\Large\Tonga.png" />
+    <Content Include="Data\Flags\Large\Transnistria.png" />
+    <Content Include="Data\Flags\Large\Trinidad and Tobago.png" />
+    <Content Include="Data\Flags\Large\Tristan da Cunha.png" />
+    <Content Include="Data\Flags\Large\Tunisia.png" />
+    <Content Include="Data\Flags\Large\Turkey.png" />
+    <Content Include="Data\Flags\Large\Turkmenistan.png" />
+    <Content Include="Data\Flags\Large\Turks and Caicos Islands.png" />
+    <Content Include="Data\Flags\Large\Tuvalu.png" />
+    <Content Include="Data\Flags\Large\Uganda.png" />
+    <Content Include="Data\Flags\Large\Ukraine.png" />
+    <Content Include="Data\Flags\Large\United Arab Emirates.png" />
+    <Content Include="Data\Flags\Large\United Kingdom.png" />
+    <Content Include="Data\Flags\Large\United States Virgin Islands.png" />
+    <Content Include="Data\Flags\Large\United States.png" />
+    <Content Include="Data\Flags\Large\Uruguay.png" />
+    <Content Include="Data\Flags\Large\Uzbekistan.png" />
+    <Content Include="Data\Flags\Large\Vanuatu.png" />
+    <Content Include="Data\Flags\Large\Vatican.png" />
+    <Content Include="Data\Flags\Large\Venezuela.png" />
+    <Content Include="Data\Flags\Large\Vietnam.png" />
+    <Content Include="Data\Flags\Large\Wallis and Futuna Islands.png" />
+    <Content Include="Data\Flags\Large\Western Sahara.png" />
+    <Content Include="Data\Flags\Large\Yemen.png" />
+    <Content Include="Data\Flags\Large\Zambia.png" />
+    <Content Include="Data\Flags\Large\Zimbabwe.png" />
+    <Content Include="Data\Flags\Small\Afghanistan.png" />
+    <Content Include="Data\Flags\Small\Aland Islands.png" />
+    <Content Include="Data\Flags\Small\Albania.png" />
+    <Content Include="Data\Flags\Small\Alderney.png" />
+    <Content Include="Data\Flags\Small\Algeria.png" />
+    <Content Include="Data\Flags\Small\American Samoa.png" />
+    <Content Include="Data\Flags\Small\Andorra.png" />
+    <Content Include="Data\Flags\Small\Angola.png" />
+    <Content Include="Data\Flags\Small\Anguilla.png" />
+    <Content Include="Data\Flags\Small\Antarctica.png" />
+    <Content Include="Data\Flags\Small\Antigua and Barbuda.png" />
+    <Content Include="Data\Flags\Small\Argentina.png" />
+    <Content Include="Data\Flags\Small\Armenia.png" />
+    <Content Include="Data\Flags\Small\Aruba.png" />
+    <Content Include="Data\Flags\Small\Ascension Island.png" />
+    <Content Include="Data\Flags\Small\Australia.png" />
+    <Content Include="Data\Flags\Small\Austria.png" />
+    <Content Include="Data\Flags\Small\Azerbaijan.png" />
+    <Content Include="Data\Flags\Small\Bahamas.png" />
+    <Content Include="Data\Flags\Small\Bahrain.png" />
+    <Content Include="Data\Flags\Small\Bangladesh.png" />
+    <Content Include="Data\Flags\Small\Barbados.png" />
+    <Content Include="Data\Flags\Small\Belarus.png" />
+    <Content Include="Data\Flags\Small\Belgium.png" />
+    <Content Include="Data\Flags\Small\Belize.png" />
+    <Content Include="Data\Flags\Small\Benin.png" />
+    <Content Include="Data\Flags\Small\Bermuda.png" />
+    <Content Include="Data\Flags\Small\Bhutan.png" />
+    <Content Include="Data\Flags\Small\Bolivia.png" />
+    <Content Include="Data\Flags\Small\Bonaire.png" />
+    <Content Include="Data\Flags\Small\Bosnia and Herzegovina.png" />
+    <Content Include="Data\Flags\Small\Botswana.png" />
+    <Content Include="Data\Flags\Small\Brazil.png" />
+    <Content Include="Data\Flags\Small\British Antarctic Territory.png" />
+    <Content Include="Data\Flags\Small\British Indian Ocean Territory.png" />
+    <Content Include="Data\Flags\Small\British Virgin Islands.png" />
+    <Content Include="Data\Flags\Small\Brunei Darussalam.png" />
+    <Content Include="Data\Flags\Small\Bulgaria.png" />
+    <Content Include="Data\Flags\Small\Burkina Faso.png" />
+    <Content Include="Data\Flags\Small\Burundi.png" />
+    <Content Include="Data\Flags\Small\Cambodia.png" />
+    <Content Include="Data\Flags\Small\Cameroon.png" />
+    <Content Include="Data\Flags\Small\Canada.png" />
+    <Content Include="Data\Flags\Small\Cape Verde.png" />
+    <Content Include="Data\Flags\Small\Cayman Islands.png" />
+    <Content Include="Data\Flags\Small\Central African Republic.png" />
+    <Content Include="Data\Flags\Small\Chad.png" />
+    <Content Include="Data\Flags\Small\Chile.png" />
+    <Content Include="Data\Flags\Small\China.png" />
+    <Content Include="Data\Flags\Small\Christmas Island.png" />
+    <Content Include="Data\Flags\Small\Cocos %28Keeling%29 Islands.png" />
+    <Content Include="Data\Flags\Small\Colombia.png" />
+    <Content Include="Data\Flags\Small\Comoros.png" />
+    <Content Include="Data\Flags\Small\Cook Islands.png" />
+    <Content Include="Data\Flags\Small\Costa Rica.png" />
+    <Content Include="Data\Flags\Small\Croatia.png" />
+    <Content Include="Data\Flags\Small\Cuba.png" />
+    <Content Include="Data\Flags\Small\Curacao.png" />
+    <Content Include="Data\Flags\Small\Cyprus.png" />
+    <Content Include="Data\Flags\Small\Czech Republic.png" />
+    <Content Include="Data\Flags\Small\Cote d%27Ivoire.png" />
+    <Content Include="Data\Flags\Small\Dem. Rep. Korea.png" />
+    <Content Include="Data\Flags\Small\Democratic Republic of the Congo.png" />
+    <Content Include="Data\Flags\Small\Denmark.png" />
+    <Content Include="Data\Flags\Small\Djibouti.png" />
+    <Content Include="Data\Flags\Small\Dominica.png" />
+    <Content Include="Data\Flags\Small\Dominican Republic.png" />
+    <Content Include="Data\Flags\Small\Ecuador.png" />
+    <Content Include="Data\Flags\Small\Egypt.png" />
+    <Content Include="Data\Flags\Small\El Salvador.png" />
+    <Content Include="Data\Flags\Small\Equatorial Guinea.png" />
+    <Content Include="Data\Flags\Small\Eritrea.png" />
+    <Content Include="Data\Flags\Small\Estonia.png" />
+    <Content Include="Data\Flags\Small\Ethiopia.png" />
+    <Content Include="Data\Flags\Small\Faeroe Islands.png" />
+    <Content Include="Data\Flags\Small\Falkland Islands.png" />
+    <Content Include="Data\Flags\Small\Federated States of Micronesia.png" />
+    <Content Include="Data\Flags\Small\Fiji.png" />
+    <Content Include="Data\Flags\Small\Finland.png" />
+    <Content Include="Data\Flags\Small\France.png" />
+    <Content Include="Data\Flags\Small\French Polynesia.png" />
+    <Content Include="Data\Flags\Small\French Southern and Antarctic Lands.png" />
+    <Content Include="Data\Flags\Small\Gabon.png" />
+    <Content Include="Data\Flags\Small\Georgia.png" />
+    <Content Include="Data\Flags\Small\Germany.png" />
+    <Content Include="Data\Flags\Small\Ghana.png" />
+    <Content Include="Data\Flags\Small\Gibraltar.png" />
+    <Content Include="Data\Flags\Small\Greece.png" />
+    <Content Include="Data\Flags\Small\Greenland.png" />
+    <Content Include="Data\Flags\Small\Grenada.png" />
+    <Content Include="Data\Flags\Small\Guam.png" />
+    <Content Include="Data\Flags\Small\Guatemala.png" />
+    <Content Include="Data\Flags\Small\Guernsey.png" />
+    <Content Include="Data\Flags\Small\Guinea-Bissau.png" />
+    <Content Include="Data\Flags\Small\Guinea.png" />
+    <Content Include="Data\Flags\Small\Guyana.png" />
+    <Content Include="Data\Flags\Small\Haiti.png" />
+    <Content Include="Data\Flags\Small\Herm.png" />
+    <Content Include="Data\Flags\Small\Honduras.png" />
+    <Content Include="Data\Flags\Small\Hong Kong.png" />
+    <Content Include="Data\Flags\Small\Hungary.png" />
+    <Content Include="Data\Flags\Small\Iceland.png" />
+    <Content Include="Data\Flags\Small\India.png" />
+    <Content Include="Data\Flags\Small\Indian Ocean Territories.png" />
+    <Content Include="Data\Flags\Small\Indonesia.png" />
+    <Content Include="Data\Flags\Small\Iran.png" />
+    <Content Include="Data\Flags\Small\Iraq.png" />
+    <Content Include="Data\Flags\Small\Ireland.png" />
+    <Content Include="Data\Flags\Small\Isle of Man.png" />
+    <Content Include="Data\Flags\Small\Israel.png" />
+    <Content Include="Data\Flags\Small\Italy.png" />
+    <Content Include="Data\Flags\Small\Jamaica.png" />
+    <Content Include="Data\Flags\Small\Japan.png" />
+    <Content Include="Data\Flags\Small\Jersey.png" />
+    <Content Include="Data\Flags\Small\Jordan.png" />
+    <Content Include="Data\Flags\Small\Kazakhstan.png" />
+    <Content Include="Data\Flags\Small\Kenya.png" />
+    <Content Include="Data\Flags\Small\Kiribati.png" />
+    <Content Include="Data\Flags\Small\Kosovo.png" />
+    <Content Include="Data\Flags\Small\Kuwait.png" />
+    <Content Include="Data\Flags\Small\Kyrgyzstan.png" />
+    <Content Include="Data\Flags\Small\Lao PDR.png" />
+    <Content Include="Data\Flags\Small\Latvia.png" />
+    <Content Include="Data\Flags\Small\Lebanon.png" />
+    <Content Include="Data\Flags\Small\Lesotho.png" />
+    <Content Include="Data\Flags\Small\Liberia.png" />
+    <Content Include="Data\Flags\Small\Libya.png" />
+    <Content Include="Data\Flags\Small\Liechtenstein.png" />
+    <Content Include="Data\Flags\Small\Lithuania.png" />
+    <Content Include="Data\Flags\Small\Luxembourg.png" />
+    <Content Include="Data\Flags\Small\Macao.png" />
+    <Content Include="Data\Flags\Small\Macedonia.png" />
+    <Content Include="Data\Flags\Small\Madagascar.png" />
+    <Content Include="Data\Flags\Small\Malawi.png" />
+    <Content Include="Data\Flags\Small\Malaysia.png" />
+    <Content Include="Data\Flags\Small\Maldives.png" />
+    <Content Include="Data\Flags\Small\Mali.png" />
+    <Content Include="Data\Flags\Small\Malta.png" />
+    <Content Include="Data\Flags\Small\Marshall Islands.png" />
+    <Content Include="Data\Flags\Small\Mauritania.png" />
+    <Content Include="Data\Flags\Small\Mauritius.png" />
+    <Content Include="Data\Flags\Small\Mexico.png" />
+    <Content Include="Data\Flags\Small\Moldova.png" />
+    <Content Include="Data\Flags\Small\Monaco.png" />
+    <Content Include="Data\Flags\Small\Mongolia.png" />
+    <Content Include="Data\Flags\Small\Montenegro.png" />
+    <Content Include="Data\Flags\Small\Montserrat.png" />
+    <Content Include="Data\Flags\Small\Morocco.png" />
+    <Content Include="Data\Flags\Small\Mozambique.png" />
+    <Content Include="Data\Flags\Small\Myanmar.png" />
+    <Content Include="Data\Flags\Small\Nagorno-Karabakh.png" />
+    <Content Include="Data\Flags\Small\Namibia.png" />
+    <Content Include="Data\Flags\Small\Nauru.png" />
+    <Content Include="Data\Flags\Small\Nepal.png" />
+    <Content Include="Data\Flags\Small\Netherlands.png" />
+    <Content Include="Data\Flags\Small\New Caledonia.png" />
+    <Content Include="Data\Flags\Small\New Zealand.png" />
+    <Content Include="Data\Flags\Small\Nicaragua.png" />
+    <Content Include="Data\Flags\Small\Niger.png" />
+    <Content Include="Data\Flags\Small\Nigeria.png" />
+    <Content Include="Data\Flags\Small\Niue.png" />
+    <Content Include="Data\Flags\Small\Norfolk Island.png" />
+    <Content Include="Data\Flags\Small\Northern Cyprus.png" />
+    <Content Include="Data\Flags\Small\Northern Mariana Islands.png" />
+    <Content Include="Data\Flags\Small\Norway.png" />
+    <Content Include="Data\Flags\Small\Oman.png" />
+    <Content Include="Data\Flags\Small\Pakistan.png" />
+    <Content Include="Data\Flags\Small\Palau.png" />
+    <Content Include="Data\Flags\Small\Palestine.png" />
+    <Content Include="Data\Flags\Small\Panama.png" />
+    <Content Include="Data\Flags\Small\Papua New Guinea.png" />
+    <Content Include="Data\Flags\Small\Paraguay.png" />
+    <Content Include="Data\Flags\Small\Peru.png" />
+    <Content Include="Data\Flags\Small\Philippines.png" />
+    <Content Include="Data\Flags\Small\Pitcairn Islands.png" />
+    <Content Include="Data\Flags\Small\Poland.png" />
+    <Content Include="Data\Flags\Small\Portugal.png" />
+    <Content Include="Data\Flags\Small\Puerto Rico.png" />
+    <Content Include="Data\Flags\Small\Qatar.png" />
+    <Content Include="Data\Flags\Small\Rapa Nui, Chile.png" />
+    <Content Include="Data\Flags\Small\Republic of Congo.png" />
+    <Content Include="Data\Flags\Small\Republic of Korea.png" />
+    <Content Include="Data\Flags\Small\Romania.png" />
+    <Content Include="Data\Flags\Small\Russian Federation.png" />
+    <Content Include="Data\Flags\Small\Rwanda.png" />
+    <Content Include="Data\Flags\Small\Saba.png" />
+    <Content Include="Data\Flags\Small\Saint Helena.png" />
+    <Content Include="Data\Flags\Small\Saint Kitts and Nevis.png" />
+    <Content Include="Data\Flags\Small\Saint Lucia.png" />
+    <Content Include="Data\Flags\Small\Saint Pierre and Miquelon.png" />
+    <Content Include="Data\Flags\Small\Saint Vincent and the Grenadines.png" />
+    <Content Include="Data\Flags\Small\Saint-Barthelemy.png" />
+    <Content Include="Data\Flags\Small\Saint-Martin.png" />
+    <Content Include="Data\Flags\Small\Samoa.png" />
+    <Content Include="Data\Flags\Small\San Marino.png" />
+    <Content Include="Data\Flags\Small\Sao Tome and Principe.png" />
+    <Content Include="Data\Flags\Small\Sark.png" />
+    <Content Include="Data\Flags\Small\Saudi Arabia.png" />
+    <Content Include="Data\Flags\Small\Senegal.png" />
+    <Content Include="Data\Flags\Small\Serbia.png" />
+    <Content Include="Data\Flags\Small\Seychelles.png" />
+    <Content Include="Data\Flags\Small\Sierra Leone.png" />
+    <Content Include="Data\Flags\Small\Singapore.png" />
+    <Content Include="Data\Flags\Small\Sint Eustatius.png" />
+    <Content Include="Data\Flags\Small\Sint Maarten.png" />
+    <Content Include="Data\Flags\Small\Slovakia.png" />
+    <Content Include="Data\Flags\Small\Slovenia.png" />
+    <Content Include="Data\Flags\Small\Solomon Islands.png" />
+    <Content Include="Data\Flags\Small\Somalia.png" />
+    <Content Include="Data\Flags\Small\Somaliland.png" />
+    <Content Include="Data\Flags\Small\South Africa.png" />
+    <Content Include="Data\Flags\Small\South Georgia and South Sandwich Islands.png" />
+    <Content Include="Data\Flags\Small\South Ossetia.png" />
+    <Content Include="Data\Flags\Small\South Sudan.png" />
+    <Content Include="Data\Flags\Small\Spain.png" />
+    <Content Include="Data\Flags\Small\Sri Lanka.png" />
+    <Content Include="Data\Flags\Small\Sudan.png" />
+    <Content Include="Data\Flags\Small\Suriname.png" />
+    <Content Include="Data\Flags\Small\Swaziland.png" />
+    <Content Include="Data\Flags\Small\Sweden.png" />
+    <Content Include="Data\Flags\Small\Switzerland.png" />
+    <Content Include="Data\Flags\Small\Syria.png" />
+    <Content Include="Data\Flags\Small\Taiwan.png" />
+    <Content Include="Data\Flags\Small\Tajikistan.png" />
+    <Content Include="Data\Flags\Small\Tanzania.png" />
+    <Content Include="Data\Flags\Small\Thailand.png" />
+    <Content Include="Data\Flags\Small\The Gambia.png" />
+    <Content Include="Data\Flags\Small\Timor-Leste.png" />
+    <Content Include="Data\Flags\Small\Togo.png" />
+    <Content Include="Data\Flags\Small\Tokelau.png" />
+    <Content Include="Data\Flags\Small\Tonga.png" />
+    <Content Include="Data\Flags\Small\Transnistria.png" />
+    <Content Include="Data\Flags\Small\Trinidad and Tobago.png" />
+    <Content Include="Data\Flags\Small\Tristan da Cunha.png" />
+    <Content Include="Data\Flags\Small\Tunisia.png" />
+    <Content Include="Data\Flags\Small\Turkey.png" />
+    <Content Include="Data\Flags\Small\Turkmenistan.png" />
+    <Content Include="Data\Flags\Small\Turks and Caicos Islands.png" />
+    <Content Include="Data\Flags\Small\Tuvalu.png" />
+    <Content Include="Data\Flags\Small\Uganda.png" />
+    <Content Include="Data\Flags\Small\Ukraine.png" />
+    <Content Include="Data\Flags\Small\United Arab Emirates.png" />
+    <Content Include="Data\Flags\Small\United Kingdom.png" />
+    <Content Include="Data\Flags\Small\United States Virgin Islands.png" />
+    <Content Include="Data\Flags\Small\United States.png" />
+    <Content Include="Data\Flags\Small\Uruguay.png" />
+    <Content Include="Data\Flags\Small\Uzbekistan.png" />
+    <Content Include="Data\Flags\Small\Vanuatu.png" />
+    <Content Include="Data\Flags\Small\Vatican.png" />
+    <Content Include="Data\Flags\Small\Venezuela.png" />
+    <Content Include="Data\Flags\Small\Vietnam.png" />
+    <Content Include="Data\Flags\Small\Wallis and Futuna Islands.png" />
+    <Content Include="Data\Flags\Small\Western Sahara.png" />
+    <Content Include="Data\Flags\Small\Yemen.png" />
+    <Content Include="Data\Flags\Small\Zambia.png" />
+    <Content Include="Data\Flags\Small\Zimbabwe.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AdDuplex.WindowsPhone">
+      <HintPath>..\packages\AdDuplexWP8.9.0.0.6\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="AdRotator">
+      <HintPath>..\packages\AdRotator.2.1.1\lib\wp8\AdRotator.dll</HintPath>
+    </Reference>
+    <Reference Include="AdRotator.Core">
+      <HintPath>..\packages\AdRotator.2.1.1\lib\wp8\AdRotator.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wp8\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wp8\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\wp8\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\wp8\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\wp8\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\wp8\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\wp8\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="SOMAWP8">
+      <HintPath>..\packages\SOMAW81_Package.1.1.9\lib\wp8\SOMAWP8.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SQLitePCL.3.8.7.2\lib\wp8\SQLitePCL.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL.Ext.WindowsPhone8.RuntimeProxy">
+      <HintPath>..\packages\SQLitePCL.3.8.7.2\lib\wp8\SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\SOMAW81_Package.1.1.9\lib\wp8\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\SOMAW81_Package.1.1.9\lib\wp8\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\SOMAW81_Package.1.1.9\lib\wp8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GG.Model.Contracts\GG.Model.Contracts.csproj">
+      <Project>{D0AC92ED-77C7-43F3-BAED-8C10D6C64A71}</Project>
+      <Name>GG.Model.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GG.ModelView\GG.ModelView.csproj">
+      <Project>{C987B67B-1C1F-4AA7-93F7-84C704B9B119}</Project>
+      <Name>GG.ModelView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GG.Model\GG.Model.csproj">
+      <Project>{3A8902D5-4FEB-4561-83F1-EE989BE77D01}</Project>
+      <Name>GG.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GG.View\GG.View.csproj">
+      <Project>{E3F388B5-49C5-47E7-9857-FAA70760CB9C}</Project>
+      <Name>GG.View</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="SQLite.WP80, version=3.8.7.2">
+      <Name>SQLite for Windows Phone</Name>
+    </SDKReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.props'))" />
+    <Error Condition="!Exists('..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.targets" Condition="Exists('..\packages\SQLitePCL.3.8.7.2\build\wp8\SQLitePCL.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+</Project>

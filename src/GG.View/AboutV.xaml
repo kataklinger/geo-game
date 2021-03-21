@@ -1,0 +1,51 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="GG.View.AboutV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding About, Source={StaticResource Locator}}">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="About GeoGame"
+                       HorizontalAlignment="Center"
+                       FontSize="48"
+                       Margin="0 120 0 0"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 120 0 0"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Game Version "/>
+                <TextBlock Text="{Binding AppVersion}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Database Version "/>
+                <TextBlock Text="{Binding DbVersion}"/>
+            </StackPanel>
+
+            <TextBlock Text="Copyright © 2015 retroCloud.net"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Icons designed by Freepik"
+                       HorizontalAlignment="Center"
+                       Margin="0 40 0 0"
+                       FontSize="12"/>
+
+            <HyperlinkButton Content="Visit website from more apps and games"
+                             Command="{Binding NavigateCommand}"
+                             Margin="0 80 0 0"/>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

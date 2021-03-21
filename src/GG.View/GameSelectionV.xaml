@@ -1,0 +1,252 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="GG.View.GameSelectionV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:support="clr-namespace:GG.View.Support;assembly=GG.View"
+    xmlns:vc="clr-namespace:GG.View.Converters;assembly=GG.View"
+    xmlns:ad="clr-namespace:AdRotator;assembly=AdRotator"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding GameSelection, Source={StaticResource Locator}}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <vc:SliderValueConverter x:Key="SliderValueConverter"/>
+        <vc:ChoiceConverter x:Key="ChoiceConverter"/>
+        <vc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.Resources>
+                    <Style x:Key="SliderStyle" TargetType="Slider">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="Maximum" Value="10"/>
+                        <Setter Property="Minimum" Value="0"/>
+                        <Setter Property="Value" Value="0"/>
+                        <Setter Property="Background" Value="{StaticResource PhoneChromeBrush}"/>
+                        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Slider">
+                                    <Grid Background="Transparent">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver"/>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
+                                                        <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalFill">
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid x:Name="HorizontalTemplate" Margin="{StaticResource PhoneHorizontalMargin}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="1" Text="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Style="{StaticResource PhoneTextTitle3Style}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="0,-42,0,0" />
+                                            <TextBlock Grid.Row="1" Text="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Right" Style="{StaticResource PhoneTextTitle3Style}" Foreground="{StaticResource PhoneSubtleBrush}" Margin="0,-42,0,0" />
+
+                                            <Rectangle x:Name="HorizontalTrack" Fill="{TemplateBinding Background}" Height="12" IsHitTestVisible="False" Margin="0,22,0,50" VerticalAlignment="Bottom"/>
+                                            <Rectangle x:Name="HorizontalFill" Fill="{TemplateBinding Foreground}" Height="12" IsHitTestVisible="False" Margin="0,22,0,50" VerticalAlignment="Bottom">
+                                                <Rectangle.Clip>
+                                                    <RectangleGeometry Rect="0, 0, 6, 12"/>
+                                                </Rectangle.Clip>
+                                            </Rectangle>
+                                            <StackPanel x:Name="HorizontalCenterElement" Margin="0,16,0,44" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                                <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat=N0}" Style="{StaticResource PhoneTextTitle3Style}" Margin="0,0,0,6" HorizontalAlignment="Left"/>
+                                                <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Height="24" Width="12"/>
+                                                <StackPanel.RenderTransform>
+                                                    <TranslateTransform />
+                                                </StackPanel.RenderTransform>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
+                                            <Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Width="12"/>
+                                            <Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Width="12">
+                                                <Rectangle.Clip>
+                                                    <RectangleGeometry Rect="0, 0, 12, 6"/>
+                                                </Rectangle.Clip>
+                                            </Rectangle>
+                                            <Rectangle x:Name="VerticalCenterElement" Fill="{StaticResource PhoneForegroundBrush}" Height="12" Margin="12,0,12,0" VerticalAlignment="Top" Width="24">
+                                                <Rectangle.RenderTransform>
+                                                    <TranslateTransform/>
+                                                </Rectangle.RenderTransform>
+                                            </Rectangle>
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="New Game" HorizontalAlignment="Center" FontSize="48" Margin="0 120 0 0"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="Game Type"
+                               VerticalAlignment="Center" />
+
+                    <toolkit:ListPicker Grid.Column="1"
+                                        ItemsSource="{Binding Games}"
+                                        SelectedItem="{Binding CurrentGame, Mode=TwoWay}">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="Generator"
+                               VerticalAlignment="Center" />
+
+                    <toolkit:ListPicker Grid.Column="1"
+                                        ItemsSource="{Binding Selectors}"
+                                        SelectedItem="{Binding CurrentSelector, Mode=TwoWay}">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                </Grid>
+
+                <ItemsControl Grid.Row="3"
+                              ItemsSource="{Binding Options}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <support:OptionTemplateSelector Content="{Binding}"
+                                                           HorizontalContentAlignment="Stretch">
+                                <support:OptionTemplateSelector.ChoiceOption>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Name}"
+                                                       VerticalAlignment="Center" />
+                                            <toolkit:ListPicker Grid.Column="1"
+                                                                ItemsSource="{Binding Choices}"
+                                                                SelectedItem="{Binding Value, Mode=TwoWay}">
+                                                <toolkit:ListPicker.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Converter={StaticResource ChoiceConverter}}"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </toolkit:ListPicker.ItemTemplate>
+                                                <toolkit:ListPicker.FullModeItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Converter={StaticResource ChoiceConverter}}"
+                                                                       FontSize="20"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </toolkit:ListPicker.FullModeItemTemplate>
+                                            </toolkit:ListPicker>
+                                        </Grid>
+                                    </DataTemplate>
+                                </support:OptionTemplateSelector.ChoiceOption>
+                                <support:OptionTemplateSelector.RangedOption>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Name}"
+                                                       VerticalAlignment="Center"/>
+                                            <Slider Grid.Column="1"
+                                                    Value="{Binding Value, Mode=TwoWay, Converter={StaticResource SliderValueConverter}}"
+                                                    Maximum="{Binding Max}"
+                                                    Minimum="{Binding Min}"
+                                                    Style="{StaticResource SliderStyle}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </support:OptionTemplateSelector.RangedOption>
+                                <support:OptionTemplateSelector.ToggleOption>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="1"
+                                                      IsChecked="{Binding Value, Mode=TwoWay}"
+                                                      Visibility="{Binding Enabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                <TextBlock Text="{Binding Name}" />
+                                            </CheckBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </support:OptionTemplateSelector.ToggleOption>
+                            </support:OptionTemplateSelector>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <Button Grid.Row="4"
+                        Content="Start Game"
+                        Command="{Binding StartGameCommand}" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>
